@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { registerUser } from "./developer/developer.controler.js";
+import { registerDeveloper } from "./developer/developer.controler.js";
+import { loginDeveloper } from "./developer/developer.controler.js";
 dotenv.config();
 
 const server = express();
@@ -21,7 +22,8 @@ async function startServer() {
     console.error(" MongoDB connection error:", err);
   }
 }
-server.post("/api/users/register", registerUser);
+server.post("/api/users/register", registerDeveloper);
+server.post("/api/users/login", loginDeveloper);
 
 
 startServer();
