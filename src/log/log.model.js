@@ -8,7 +8,7 @@ const logSchema = new mongoose.Schema(
     },
     level: {
       type: String,
-      enum: ["INFO", "WARN", "ERROR"], // enforce uppercase if required
+      enum: ["INFO", "WARN", "ERROR"], 
       required: true,
     },
     count: {

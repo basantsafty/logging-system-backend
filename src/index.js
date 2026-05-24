@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import  developerRouter from "./developer/developer.router.js";
 import appRouter from "./application/application.router.js";
 import {validateAuthToken} from "./middlewares/auth.middlewares.js";
+import logRouter from "./log/log.router.js";
+import { validateDeveloperApiKey } from "./middlewares/apiAuth.middleware.js";
 dotenv.config();
 
 const server = express();
@@ -26,7 +28,8 @@ async function startServer() {
 server.use("/api/users", developerRouter);
 server.use(validateAuthToken);
 server.use("/api/applications", appRouter);
-
+server.use(validateDeveloperApiKey);
+server.use("/api", logRouter);
 
 
 startServer();
