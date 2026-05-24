@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import  developerRouter from "./developer/developer.router.js";
+import appRouter from "./application/application.router.js";
 import {validateAuthToken} from "./middlewares/auth.middlewares.js";
 dotenv.config();
 
@@ -23,6 +24,8 @@ async function startServer() {
   }
 }
 server.use("/api/users", developerRouter);
+server.use(validateAuthToken);
+server.use("/api/applications", appRouter);
 
 
 startServer();

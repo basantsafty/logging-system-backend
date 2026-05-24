@@ -65,7 +65,7 @@ export const loginDeveloper = async(request,response,next)=>{
 }
 
 
-const tokenBlacklist = [];
+export const tokenBlacklist = [];
 
 export const logoutUser = (req, res) => {
   const { authorization } = req.headers;

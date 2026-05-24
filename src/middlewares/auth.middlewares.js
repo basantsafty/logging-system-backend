@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-
+import { tokenBlacklist } from "../developer/developer.controler.js";
 export const validateAuthToken = async (request, response, next) => {
     const { authorization } = request.headers;
 
@@ -20,13 +20,12 @@ export const validateAuthToken = async (request, response, next) => {
         }
           
         
+        
+        const token = authorizationHeaderValue.at(-1);
+        
         if (tokenBlacklist.includes(token)) {
             return res.status(401).json({ message: "Token has been revoked" });
         }
-
-
-        const token = authorizationHeaderValue.at(-1);
-
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
         request.userId = decodedToken.userId;
