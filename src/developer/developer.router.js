@@ -2,9 +2,14 @@ import express from "express";
 import { registerDeveloper } from "./developer.controler.js";
 import { loginDeveloper } from "./developer.controler.js";
 
-const router = express.Router();
+import { logoutUser } from "./developer.controler.js";
 
-router.post("/register", registerDeveloper);
-router.post("/login", loginDeveloper);
+const developerRouter = express.Router();
 
-export default router;
+developerRouter.post("/register", registerDeveloper);
+developerRouter.post("/login", loginDeveloper);
+developerRouter.post("/logout",  logoutUser);
+
+
+
+export default developerRouter;

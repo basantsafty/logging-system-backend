@@ -63,4 +63,18 @@ export const loginDeveloper = async(request,response,next)=>{
         next(error);
         }
 }
-export default {registerDeveloper,loginDeveloper}
+
+
+const tokenBlacklist = [];
+
+export const logoutUser = (req, res) => {
+  const { authorization } = req.headers;
+  if (!authorization) {
+    return res.status(400).json({ message: "No token provided" });
+  }
+
+  const token = authorization.split(" ")[1];
+  tokenBlacklist.push(token);
+  return res.status(200).json({ message: "Logged out successfully" });
+};
+

@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { registerDeveloper } from "./developer/developer.controler.js";
-import { loginDeveloper } from "./developer/developer.controler.js";
+import  developerRouter from "./developer/developer.router.js";
+import {validateAuthToken} from "./middlewares/auth.middlewares.js";
 dotenv.config();
 
 const server = express();
@@ -22,8 +22,7 @@ async function startServer() {
     console.error(" MongoDB connection error:", err);
   }
 }
-server.post("/api/users/register", registerDeveloper);
-server.post("/api/users/login", loginDeveloper);
+server.use("/api/users", developerRouter);
 
 
 startServer();
