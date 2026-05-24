@@ -28,4 +28,5 @@ server.use(validateAuthToken);
 server.use("/api/applications", appRouter);
 
 
+
 startServer();
